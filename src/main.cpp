@@ -183,7 +183,7 @@ int on_terminate(int signum) {
   // This function is called when the service is terminated
   // You can do any cleanup here, like closing files, sockets, etc.
   printf("Service terminated with signal %d, gracefully shutting down\n", signum);
-  printf("stopping lidar motor\n",);
+  printf("stopping lidar motor\n");
   // Stop the LIDAR motor and clean up
   drv->stop();
   drv->setMotorSpeed(0);
