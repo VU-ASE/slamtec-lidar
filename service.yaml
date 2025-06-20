@@ -1,0 +1,27 @@
+name: lidar
+author: vu-ase
+source: github.com/vu-ase/lidar
+version: 0.0.1
+description: Uses the mounted lidar to scan the environment and send the angles (degrees), distance (millimeters), quality (of the signal).
+
+commands:
+  build: make build
+  run: ./bin/lidar
+
+inputs: []
+outputs:
+  - lidar-data
+
+configuration:
+# The speed determines how fast the lidar turns. The lidar by default turns at 600rpm (10Hz).
+# it can also turn from 300 (5Hz) to 900 (15Hz).
+  - name: speed
+    type: number
+    value: 600
+    tunable: false
+# The mode determines whether the lidar runs in Standard, Express or Boost mode.
+# Boost is the default represented by 2, Express is 1 and Standard is 0.
+  - name: mode
+    type: number
+    value: 2
+    tunable: false

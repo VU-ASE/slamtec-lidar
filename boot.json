@@ -1,0 +1,22 @@
+{
+    "name": "lidar",
+    "version": "1.0.0",
+    "inputs": [],
+    "outputs": [{
+            "name": "lidar_data",
+            "address": "tcp://*:7882"
+        }
+    ],
+    "configuration": [
+        {
+            "name": "speed",
+            "type": "number",
+            "tunable": true,
+            "value": 600
+        }
+    ],
+    "tuning": {
+        "enabled": false,
+        "address": "tcp://*:8829"
+    }
+}
