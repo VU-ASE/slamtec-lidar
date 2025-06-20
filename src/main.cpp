@@ -12,7 +12,7 @@ extern "C" {
 using namespace sl;
 
 ILidarDriver * drv;
-
+IChannel* _channel;
 
 long long current_time_millis() {
     struct timeval tv;
@@ -56,7 +56,6 @@ int user_program(Service service, Service_configuration *configuration) {
   
   // Create a serial port channel
   // The serial port is set to /dev/ttyUSB0 and the baudrate is set to 115200 
-  IChannel* _channel;
   _channel = (*createSerialPortChannel("/dev/ttyUSB0", 115200));
   // Create a LIDAR driver
   drv = *createLidarDriver();
