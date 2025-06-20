@@ -1,5 +1,12 @@
 # Changelog
 
+## 1.0.0 (2025-06-20)
+
+
+### Bug Fixes
+
+* changed the readme service name ([94e7806](https://github.com/VU-ASE/slamtec-lidar/commit/94e780694b08e74bee2f1aa861ba33e4de03e189))
+
 ## 1.0.0 (2025-04-05)
 
 
