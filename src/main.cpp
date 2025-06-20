@@ -11,13 +11,8 @@ extern "C" {
 
 using namespace sl;
 
-// A simple signal handler to catch Ctrl-C
-// This is used to stop the program gracefully and stop the LIDAR motor
-bool ctrl_c_pressed;
-void ctrlc(int)
-{
-    ctrl_c_pressed = true;
-}
+ILidarDriver * drv;
+
 
 long long current_time_millis() {
     struct timeval tv;
@@ -64,7 +59,7 @@ int user_program(Service service, Service_configuration *configuration) {
   IChannel* _channel;
   _channel = (*createSerialPortChannel("/dev/ttyUSB0", 115200));
   // Create a LIDAR driver
-  ILidarDriver * drv = *createLidarDriver();
+  drv = *createLidarDriver();
 
   // Use driver to connect to the LIDAR via the serial port channel
   auto res = drv->connect(_channel);
@@ -86,9 +81,6 @@ int user_program(Service service, Service_configuration *configuration) {
   else {
     fprintf(stderr, "Failed to connect to LIDAR %08x\r\n", res);
   }
-  // Catch SIGINT (interrupt) and SIGTERM (termination) signals to gracefully stop the program and shut down the LIDAR motor.
-  signal(SIGINT, ctrlc);
-  signal(SIGTERM, ctrlc);
 
   // Create vector to hold the possible scan modes
   std::vector<LidarScanMode> scanModes;
@@ -178,12 +170,6 @@ int user_program(Service service, Service_configuration *configuration) {
       }
       free(lidar_sensor_output.scans);
     }
-    // Check if the program was interrupted by Ctrl-C
-    // If so, break the loop and stop the LIDAR motor
-    if (ctrl_c_pressed){ 
-      break;
-    }
-    
   }
   // Stop the LIDAR motor and clean up
   drv->stop();
@@ -197,6 +183,13 @@ int on_terminate(int signum) {
   // This function is called when the service is terminated
   // You can do any cleanup here, like closing files, sockets, etc.
   printf("Service terminated with signal %d, gracefully shutting down\n", signum);
+  printf("stopping lidar motor\n",);
+  // Stop the LIDAR motor and clean up
+  drv->stop();
+  drv->setMotorSpeed(0);
+  delete drv;
+  delete _channel;
+
   fflush(stdout); // Ensure all output is printed before exit
   return 0; // Return 0 to indicate successful termination
 }
@@ -206,8 +199,3 @@ int on_terminate(int signum) {
 int main() {
   return run(user_program, on_terminate);
 }
-
-
-
-
-
