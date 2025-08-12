@@ -1,5 +1,14 @@
 # Changelog
 
+## [1.0.1](https://github.com/VU-ASE/slamtec-lidar/compare/v1.0.0...v1.0.1) (2025-08-12)
+
+
+### Bug Fixes
+
+* missing comma in print statement ([b759d78](https://github.com/VU-ASE/slamtec-lidar/commit/b759d78bb3ec21c2cca57c312ce64cf9f6a60990))
+* removed signal handler code, bc of onTerminate ([ff20eed](https://github.com/VU-ASE/slamtec-lidar/commit/ff20eed0b40e40415afed58cceb60544dfdf46ff))
+* variable needed to be global ([6763215](https://github.com/VU-ASE/slamtec-lidar/commit/6763215dc828b805f0268ad3bf1285015e1a473a))
+
 ## 1.0.0 (2025-06-20)
 
 
