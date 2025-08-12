@@ -2,7 +2,7 @@
 <div align="center">
   <a href="https://github.com/VU-ASE/slamtec-lidar/releases/latest">Latest release</a>
   <span>&nbsp;&nbsp;•&nbsp;&nbsp;</span>
-  <a href="https://ase.vu.nl/docs/category/slamtec-lidar">Documentation</a>
+  <a href="https://ase.vu.nl/docs/category/lidar">Documentation</a>
   <br />
 </div>
 <br/>
